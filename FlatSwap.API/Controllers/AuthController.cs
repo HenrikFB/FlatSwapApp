@@ -45,15 +45,16 @@ namespace FlatSwap.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
         {
-            var userFromRepo = await _repo.Login(userForLoginDto.UserName.ToLower(), userForLoginDto.Password);
+            var userFromRepo = await _repo.Login(userForLoginDto.UserName.ToLower(),
+             userForLoginDto.Password);
 
             if (userFromRepo == null)
                 return Unauthorized();
 
             var claims = new[]
             {
-               new Claim(ClaimTypes.NameIdentifier, userFromRepo.Id.ToString()),
-               new Claim(ClaimTypes.Name, userFromRepo.Username)
+            new Claim(ClaimTypes.NameIdentifier, userFromRepo.Id.ToString()),
+            new Claim(ClaimTypes.Name, userFromRepo.Username)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.
@@ -74,7 +75,7 @@ namespace FlatSwap.API.Controllers
 
             return Ok(new {
                 token = tokenHandler.WriteToken(token)
-            });          
+            });              
         }
     }
 }
