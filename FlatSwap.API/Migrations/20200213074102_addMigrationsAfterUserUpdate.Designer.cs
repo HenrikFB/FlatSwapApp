@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FlatSwap.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200204160851_addAgainMigration")]
-    partial class addAgainMigration
+    [Migration("20200213074102_addMigrationsAfterUserUpdate")]
+    partial class addMigrationsAfterUserUpdate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -61,7 +61,7 @@ namespace FlatSwap.API.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("DataOfBirth")
+                    b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Gender")
